@@ -23,4 +23,6 @@ model = linear_model.LinearRegression().fit(X_train,y_train)
 @app.route('/<data>') 
 def predict(data):
     return str(math.ceil(model.predict([[int(data)]])))
-app.run()
+
+if __name__=='__main__':
+    app.run(debug=True)
