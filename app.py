@@ -1,5 +1,4 @@
 from flask import Flask
-import matplotlib.pyplot as plt
 import csv
 import pandas as pd
 from sklearn import linear_model
