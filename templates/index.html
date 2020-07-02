@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS -->
+    <!--build:css css/main.css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css'>
+    <link rel="stylesheet" href="{{url_for('static',filename='sty.css')}}">
+    <!-- endbuild -->
+    <title>Covid-19 Predictor</title>
+</head>
+
+<body>
+    <header class="jumbotron bg-dark">
+        <div class="container">
+            <div class="row row-header">
+                <div class="col-12 ">
+                    <h1>Covid-19 Predictor</h1>
+                    <p> This application can predict total count of covid-19 positive cases for a given date.</p>
+                </div>
+                </div>
+        </div>
+    </header>
+
+    <div class="row row-content align-self-center">
+        <div class="col-12 col-md-12 offset-md-2">
+            <h1>We are here to predict covid-19 cases.</h1>
+            <div class=" col-md-6">
+            <p class="text-primary"> We all know we are suffering from the deadly covid-19 disease. Many people have lost their lives. Still some people doesnt care about these disease. Thats when i taught, why cant we make a covid-19 predictor to tell them if they still do what they do(roaming around necessary without the knowledge of getting infected).So i taught if they know the future count they will stop doing roaming around . Thats why we created it.</p>
+            <p class="text-danger"> Enter the date you wish to check the total cases</p>
+        </div>
+        <div class="row ml-4 form">
+            <form name="covid19" method="GET" onsubmit="convert(document.getElementById('date1').value)">
+            <div class="form-group row">
+                <label class="col-12 col-md-6" for="date1">Enter the Date</label>
+                <label class="col-12 col-md-6"><input id="date1" type="date" name="date1"></label> 
+            </div>
+            <div class="form-group row align-self-center">
+                <label class="col-12  col-md-12"><button type="submit" class="btn btn-danger" >Submit</button></label>
+            </div>
+            </form>
+            
+        </div>
+        <h3 class='text-danger' id='processed'></h3>
+    </div>
+    </div>
+    <div class="row">
+        <div class="col-12 text-primary col-md-12 m-2">
+            <p  class="offset-md-2"> Thanks for visiting our website.Also dont forget to subscribe our youtube channel.</p>
+            <p class="offset-md-2">In future we are going a mobile app and also we can able to find prediction for all the state of india.</p>
+            <h2 class="offset-md-2 text-align-center text-warning">PLEASE BE SAFE</h2>
+            <h2 class="offset-md-2 text-align-center text-warning">STAY HOME STAY SAFE!</h2>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">             
+                <div class="col-12 offset-md-6 align-self-center">
+                    <div class="text-center">
+                        <a class="btn btn-social-icon btn-google" href="http://google.com/+"><i class="fa fa-google-plus fa-lg"></i></a>
+                        <a class="btn btn-social-icon btn-facebook" href="http://www.facebook.com/profile.php?id="><i class="fa fa-facebook fa-lg"></i></a>
+                        <a class="btn btn-social-icon btn-linkedin" href="https://www.linkedin.com/in/piyush-chouhan-72b747155"><i class="fa fa-linkedin fa-lg"></i></a>
+                        <a class="btn btn-social-icon btn-twitter" href="https://twitter.com/Mohan49412755?s=09"><i class="fa fa-twitter fa-lg"></i></a>
+                        <a class="btn btn-social-icon btn-google" href="https://www.youtube.com/c/lifelessons2327"><i class="fa fa-youtube fa-lg"></i></a>
+                        <a class="btn btn-social-icon " href="mailto:vemohan@gmail.com"><i class="fa fa-envelope-o fa-lg"></i></a>
+                    </div>
+                </div>
+           </div>
+           <div class="row justify-content-center">             
+                <div class="col-5">
+                    <p>© Copyright 2020 Life Lessons</p>
+                </div>
+           </div>
+        </div>
+    </footer>
+        <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
+        <!--build:js js/main.js-->
+        <script
+        src="https://code.jquery.com/jquery-2.2.4.js"
+        integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+        crossorigin="anonymous"></script>
+        <script
+        src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"
+        integrity="sha256-PsB+5ZEsBlDx9Fi/GXc1bZmC7wEQzZK4bM/VwNm1L6c="
+        crossorigin="anonymous"></script>
+        <script src="js/popper.min.js"></script>
+        <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js'></script>
+        <script>
+            function convert(date){
+                event.preventDefault();
+                var date=new Date(date);
+                var d=new Date("2020-06-01");
+                var diff=(date.getTime()-d.getTime())/(1000 * 3600 * 24);
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("processed").innerHTML = "Cases predicted : "+this.responseText;
+                    }
+                };
+                xhttp.open("GET", "/"+diff, true);
+                xhttp.send();
+            }
+        </script>
+        <!--endbuild -->
+</body>
+
+</html>

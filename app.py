@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import (Flask,render_template)
 import csv
 import pandas as pd
 from sklearn import linear_model
@@ -21,6 +21,10 @@ X = tn.iloc[:, :-1].values
 y = tn.iloc[:, 1].values
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
 model = linear_model.LinearRegression().fit(X_train,y_train)
+
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 @app.route('/<data>') 
 def predict(data):
