@@ -15,6 +15,8 @@ tn["Date"] = pd.to_datetime(tn["Date"]).dt.strftime("%Y%m%d")
 tn['Date']=tn['Date'].astype(int)
 tn=tn.drop(['State','TotalSamples','Negative'],axis=1)
 tn=tn[tn['Date']>20200600]
+for i in range(0,29):
+    tn['Date'][i:i+1]=i+1
 X = tn.iloc[:, :-1].values
 y = tn.iloc[:, 1].values
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
@@ -25,4 +27,4 @@ def predict(data):
     return str(math.ceil(model.predict([[int(data)]])))
 
 if __name__=='__main__':
-    app.run(debug=True)
+    app.run()
