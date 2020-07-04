@@ -15,7 +15,7 @@ tn["Date"] = pd.to_datetime(tn["Date"]).dt.strftime("%Y%m%d")
 tn['Date']=tn['Date'].astype(int)
 tn=tn.drop(['State','TotalSamples','Negative'],axis=1)
 tn=tn[tn['Date']>20200600]
-for i in range(0,29):
+for i in range(0,len(tn)+1):
     tn['Date'][i:i+1]=i+1
 X = tn.iloc[:, :-1].values
 y = tn.iloc[:, 1].values
