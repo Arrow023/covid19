@@ -1,4 +1,4 @@
-from flask import (Flask,render_template)
+from flask import (Flask,render_template,Response,jsonify)
 import csv
 import pandas as pd
 from sklearn import linear_model
@@ -6,6 +6,7 @@ from sklearn.model_selection import train_test_split
 import datetime as dt
 import numpy as np
 import math
+
 
 app = Flask(__name__) 
 
@@ -28,7 +29,8 @@ def index():
 
 @app.route('/<data>') 
 def predict(data):
-    return str(math.ceil(model.predict([[int(data)]])))
+    data=str(math.ceil(model.predict([[int(data)]])))
+    return jsonify(prediction=data)
 
 if __name__=='__main__':
     app.run()

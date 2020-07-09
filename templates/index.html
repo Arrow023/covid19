@@ -107,7 +107,8 @@
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("processed").innerHTML = "Cases predicted : "+this.responseText;
+                        json=JSON.parse(this.response);
+                    document.getElementById("processed").innerHTML = "Cases predicted : "+json.prediction;
                     }
                 };
                 xhttp.open("GET", "/"+diff, true);
