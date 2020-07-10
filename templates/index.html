@@ -13,22 +13,22 @@
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css'>
     <link rel="stylesheet" href="{{url_for('static',filename='sty.css')}}">
+    <link rel='shortcut icon' href='https://img.icons8.com/cute-clipart/64/000000/coronavirus.png'>
     <!-- endbuild -->
     <title>Covid-19 Predictor</title>
 </head>
 
-<body>
-    <header class="jumbotron bg-dark">
+<body style='background-color:#cecccc'>
+    <header class="jumbotron" style="background-color: black;">
         <div class="container">
             <div class="row row-header">
                 <div class="col-12 ">
-                    <h1>COVID-19 Predictor</h1>
+                    <h1>COVID-19 Predictor ~ A Fully automated A.I.</h1>
                     <p> This application can predict total count of covid-19 positive cases for a given date.</p>
                 </div>
                 </div>
         </div>
     </header>
-
     <div class="row row-content align-self-center">
         <div class="col-12 offset-md-2">
             <h2>We the team of <em>Life Lessons</em> have provided a little support in predicting COVID-19 cases.</h2>
@@ -59,6 +59,7 @@
     </div>
     <div class="row">
         <div class="col-12 text-primary col-md-12 m-2">
+            <p class='offset-md-2 text-warning h3 rounded'>This is an fully automated algorithm. It will update the data on daily basis and trains itself</p>
             <p  class="offset-md-2"> Thanks for visiting our website.Also dont forget to subscribe our youtube channel.</p>
             <p class="offset-md-2">In future we are going to create mobile app and also we can able to find prediction for all the state of india.</p>
             <h2 class="offset-md-2 text-align-center text-warning">PLEASE BE SAFE</h2>
@@ -96,14 +97,14 @@
         src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"
         integrity="sha256-PsB+5ZEsBlDx9Fi/GXc1bZmC7wEQzZK4bM/VwNm1L6c="
         crossorigin="anonymous"></script>
-        <script src="js/popper.min.js"></script>
+        <script src="{{url_for('static',filename='js/popper.min.js')}}"></script>
         <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js'></script>
         <script>
             function convert(date){
                 event.preventDefault();
                 var date=new Date(date);
                 var d=new Date("2020-06-01");
-                var diff=((date.getTime()-d.getTime())/(1000 * 3600 * 24))+4;
+                var diff=((date.getTime()-d.getTime())/(1000 * 3600 * 24));
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
@@ -111,7 +112,7 @@
                     document.getElementById("processed").innerHTML = "Cases predicted : "+json.prediction;
                     }
                 };
-                xhttp.open("GET", "/"+diff, true);
+                xhttp.open("GET", "/predict/"+diff, true);
                 xhttp.send();
             }
         </script>
